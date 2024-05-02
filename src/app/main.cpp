@@ -15,5 +15,6 @@ main(void)
 
     dispatch_init();
     dispatch_print_all();
+    dispatch_shutdown();
     return 0;
 }
