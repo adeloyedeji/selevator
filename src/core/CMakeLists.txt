@@ -2,6 +2,7 @@ include_directories(${SELEVATOR_INC_DIR})
 
 set(SOURCES
     dispatch.c
+    elevator.c
 )
 
 find_package(PkgConfig REQUIRED)

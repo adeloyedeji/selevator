@@ -11,7 +11,6 @@ main(void)
         std::cout << "Debug mode is not enabled." << std::endl;
     
     std::cout << "Elevator instance count: " << SELEVATOR_ELEVATOR_INSTANCE << std::endl;
-    std::cout << "Return value: " << hello_there() << std::endl;
 
     dispatch_init();
     dispatch_print_all();

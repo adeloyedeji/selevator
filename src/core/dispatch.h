@@ -12,7 +12,6 @@ void dispatch_init(void);
 void dispatch_request(uint8_t floor);
 void dispatch_shutdown(void);
 void dispatch_print_all(void);
-int hello_there(void);
 
 #if defined(__cplusplus)
 }
