@@ -9,6 +9,8 @@
 #define MAX_SECS_OPEN           30
 #define COUNTDOWN_UPPER_LIMIT   5
 
+int hello_there() { return 56; }
+
 struct elevator* elevator_init(void);
 void elevator_enable(struct elevator* el);
 void elevator_disable(struct elevator* el);
@@ -158,12 +160,11 @@ elevator_enable(struct elevator* el)
 void elevator_print(struct elevator* el)
 {
 #if DEBUG_MODE
-    printf(
-        "\n"
+    printf("\n"
         "Elevator ID: %s\n"
         "Hash ID: %d\n"
         "Max weight: %dkg\n"
-        "State: %s\n",
+        "State: %s\n"
         "Current floor: %d\n"
         "Maximum floor allowed: %d\n"
         "Destination floor: %d\n"

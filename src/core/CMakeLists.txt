@@ -15,3 +15,5 @@ endif()
 add_library(core STATIC ${SOURCES})
 
 target_link_libraries(core PUBLIC inc)
+
+target_link_libraries(core INTERFACE glib-2.0)
