@@ -1,14 +1,12 @@
-#include <stdint.h>
-#include <stdio.h>
-#include "elevator.h"
+#include "precomp.h"
 
 #define MAX_WEIGHT              2000
 #define MAX_FLOOR_NUM           15
 #define MAX_SECS_OPEN           30
 #define COUNTDOWN_UPPER_LIMIT   5
 
-typedef uint8_t weight;
-typedef uint8_t floor_num;
+typedef int weight;
+typedef int floor_num;
 
 enum elevator_state {
     ELEVATOR_STATE_IDLE = 0,

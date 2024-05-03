@@ -9,6 +9,7 @@ set(APP_NAME "elevator-test")
 
 add_executable(${APP_NAME} ${SOURCES})
 target_link_libraries(${APP_NAME} PUBLIC core)
+target_link_libraries(core INTERFACE glib-2.0)
 install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/${APP_NAME}
         DESTINATION

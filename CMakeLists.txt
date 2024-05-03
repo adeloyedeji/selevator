@@ -27,13 +27,20 @@ else()
 endif()
 
 if (NOT ELEVATOR_INSTANCE_COUNT)
-    message(STATUS "Default elevator instance count = 4. Specify -D_ELEVATOR_INSTANCE_COUNT to change default")
+    message(STATUS "Default elevator instance count = 4. Specify -DELEVATOR_INSTANCE_COUNT to change default")
     set(ELEVATOR_INSTANCE_COUNT 4)
 else()
     message(STATUS "Elevator instance count = ${ELEVATOR_INSTANCE_COUNT}")
 endif()
 
 set(SELEVATOR_INC_DIR ${CMAKE_SOURCE_DIR}/src/inc)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GLIB_PKG REQUIRED glib-2.0)
+if (GLIB_PKG_FOUND)
+    message(STATUS "Found glib-2.0")
+    include_directories(${GLIB_PKG_INCLUDE_DIRS})
+endif()
 
 add_subdirectory(src)
 

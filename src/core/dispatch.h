@@ -1,9 +1,6 @@
 #ifndef __SE_DISPATCH_H__
 #define __SE_DISPATCH_H__
 
-#include <stdint.h>
-#include "selevator.h"
-
 #if defined(__cplusplus)
 extern "C" {
 #endif

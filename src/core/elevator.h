@@ -1,9 +1,6 @@
 #ifndef __SE_ELEVATOR_H__
 #define __SE_ELEVATOR_H__
 
-#include <glib.h>
-#include "selevator.h"
-
 #if defined(__cplusplus)
 extern "C" {
 #endif

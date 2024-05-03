@@ -1,9 +1,4 @@
-#include <glib.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
-#include "elevator.h"
-#include "dispatch.h"
+#include "precomp.h"
 
 static GHashTable* elevator_db = NULL;
 
