@@ -3,6 +3,7 @@ include_directories(${SELEVATOR_INC_DIR})
 set(SOURCES
     dispatch.c
     elevator.c
+    mm.c
 )
 
 add_library(core STATIC ${SOURCES})

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include "precomp.h"
 
 int
@@ -13,6 +14,7 @@ main(void)
     std::cout << "Elevator instance count: " << SELEVATOR_ELEVATOR_INSTANCE << std::endl;
 
     dispatch_init();
+    sleep(20);
     dispatch_print_all();
     dispatch_shutdown();
     return 0;
