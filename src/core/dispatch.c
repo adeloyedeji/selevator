@@ -72,6 +72,7 @@ worker_pool_fn(gpointer event, gpointer u_data)
             break;
     }
 
+    g_free(d_msg->message);
     g_free(d_msg);
 }
 
@@ -126,9 +127,18 @@ dispatch_init(void)
             goto quit_init;
         }
 
+        size_t message_sz = sizeof(struct dispatch_startup_message)+1;
+        d_msg->message = (char*)g_try_malloc0(message_sz);
+        if (!d_msg->message)
+        {
+            g_free(d_msg);
+            g_free(startup_msg);
+            goto quit_init;
+        }
+
         d_msg->type = DISPATCH_EVENT_STARTING_UP;
-        d_msg->len = sizeof(struct dispatch_message);
-        memcpy(DISPATCH_MESSAGE_PAYLOAD(d_msg), (void*)startup_msg, sizeof(struct dispatch_startup_message));
+        d_msg->len = sizeof(struct dispatch_startup_message);
+        memcpy(DISPATCH_MESSAGE_PAYLOAD(d_msg), startup_msg, sizeof(struct dispatch_startup_message));
     
         g_thread_pool_push(worker_pool, d_msg, &err);
 
@@ -146,6 +156,9 @@ dispatch_init(void)
             G_LOG_LEVEL_INFO,
             "Dispatch service successfully started ..."
         );
+        printf("printf(): Dispatch service successfully started ...\n");
+
+        g_free(startup_msg);
 
         return;
     }
@@ -164,9 +177,13 @@ dispatch_request(uint8_t floor)
 void
 dispatch_shutdown(void)
 {
+    if (dispatch->state < DISPATCH_STATE_RUNNING)
+        return;
+
     dispatch->state = DISPATCH_STATE_CLEANUP;
     
     g_hash_table_remove_all(elevator_db);
+    g_hash_table_destroy(elevator_db);
     g_thread_pool_free(worker_pool, 1, 1);
 
     dispatch->state = DISPATCH_STATE_DOWN;
@@ -176,5 +193,6 @@ dispatch_shutdown(void)
 void
 dispatch_print_all(void)
 {
-    g_hash_table_foreach(elevator_db, elevator_display, NULL);
+    if (dispatch->state >= DISPATCH_STATE_RUNNING)
+        g_hash_table_foreach(elevator_db, elevator_display, NULL);
 }

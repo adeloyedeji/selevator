@@ -30,7 +30,7 @@ struct dispatch_service {
 struct dispatch_message {
     uint8_t type;
     uint8_t len;
-    unsigned char message[0];
+    unsigned char* message;
 };
 
 struct dispatch_startup_message {
